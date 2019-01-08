@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<div class="mainContainers">
+
+    @*<h2>@ViewBag.Title.</h2>
+        <h3>@ViewBag.Message</h3>*@
+
+    <form action="/" method="post">
+        <fieldset class="fieldsetBorder">
+            <legend class="fieldsetLegend">Contact Us On Here</legend>
+            <label for="firstName">First Name:</label><br>
+            <input type="text" name="firstName" /><br>
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" name="lastName" value="" /><br>
+            <label for="email">Email:</label><br>
+            <input type="email" name="email" value="" /><br>
+            <label>Question/Comment</label><br>
+            <textarea maxlength="500"></textarea><br>
+            <input type="submit" name="submit" value="Submit" />
+        </fieldset>
+    </form>
+    <br>
+    <h4>Here is our address and phone just incase</h4>
+    <address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+</div>

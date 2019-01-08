@@ -1,0 +1,108 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.container-main {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+.homePageBanner {
+    margin-left: 0px;
+    padding-top: 21%;
+}
+
+.parallax {
+    background-image: url('Snow-covered-mountain-banner.jpg');
+    height: 50vh;
+    width: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /*background-position: center;*/
+    /*background-size: cover;*/
+}
+
+.image-caption {
+    color:white;
+}
+
+.siteBtns {
+    border-color: rgb(33,33,33);
+    border-radius: 5px;
+    background-color: rgb(34,34,34);
+    color: darkgray;
+}
+.siteBtns:hover {
+    border-radius: 5px;
+    color: whitesmoke;
+}
+
+.mainContainers {
+    margin: 1% 5%;
+}
+.shopItemTitle {
+    text-align: center;
+}
+.shopItem {
+    display:inline-block;
+    margin: 1%;
+    padding: 1%;
+    border: 1px groove grey;
+    border-radius: 4px;
+}
+.shopItem:hover {
+     box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .4);
+}
+.noDeco, .noDeco:hover, .noDeco:visited {
+    text-decoration:none;
+    color: inherit;
+}
+.noDeco:active .shopItem {
+    box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .4);
+}
+
+.fieldsetBorder {
+    width: 25%;
+    border: 1px groove lightgray;
+    padding: 1% 6% 1% 1%;
+    margin: 0 0 0 0;
+    /*text-align: center;*/
+}
+.fieldsetBorder input, .fieldsetBorder textarea {
+    width: 90%;
+    border-radius: 4px; 
+    
+}
+.fieldsetLegend {
+    padding: 0 5%;
+    border-bottom: none;
+    text-align: left;
+    margin-bottom: 0px;
+    border-radius: 4px;
+}
+
+footer p, footer ul , footer h5 {
+    display:inline-block;
+}
+
