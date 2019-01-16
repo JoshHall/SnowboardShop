@@ -69,10 +69,12 @@ namespace Snowboarding.Controllers
             _db.CartItems.Add(addItem);
             _db.SaveChanges();
 
-            var query = from g in _db.CartItems
-                        select g;
+            //var query = from g in _db.CartItems
+            //            select g;
 
-            return View("Shop",query);
+            //return View("Shop",query);
+            this.Response.StatusCode = 200;
+            return Content("Ok");
         }
 
         public ActionResult RemoveFromCart(int id)
