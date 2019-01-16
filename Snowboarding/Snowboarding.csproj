@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,7 +159,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901091634393_SnowProducts.cs" />
+    <Compile Include="Migrations\201901091634393_SnowProducts.Designer.cs">
+      <DependentUpon>201901091634393_SnowProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091645289_TypeAdded.cs" />
+    <Compile Include="Migrations\201901091645289_TypeAdded.Designer.cs">
+      <DependentUpon>201901091645289_TypeAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091715476_AddedCart.cs" />
+    <Compile Include="Migrations\201901091715476_AddedCart.Designer.cs">
+      <DependentUpon>201901091715476_AddedCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091718073_AddedContactFormAndCart.cs" />
+    <Compile Include="Migrations\201901091718073_AddedContactFormAndCart.Designer.cs">
+      <DependentUpon>201901091718073_AddedContactFormAndCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091931094_AddedImageToProduct.cs" />
+    <Compile Include="Migrations\201901091931094_AddedImageToProduct.Designer.cs">
+      <DependentUpon>201901091931094_AddedImageToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901102005258_addedRelationshipBetweenCartAndProducts.cs" />
+    <Compile Include="Migrations\201901102005258_addedRelationshipBetweenCartAndProducts.Designer.cs">
+      <DependentUpon>201901102005258_addedRelationshipBetweenCartAndProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901111847596_addToCartAction.cs" />
+    <Compile Include="Migrations\201901111847596_addToCartAction.Designer.cs">
+      <DependentUpon>201901111847596_addToCartAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901111917021_addToCartActions.cs" />
+    <Compile Include="Migrations\201901111917021_addToCartActions.Designer.cs">
+      <DependentUpon>201901111917021_addToCartActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901112031290_EditedDatabaseName.cs" />
+    <Compile Include="Migrations\201901112031290_EditedDatabaseName.Designer.cs">
+      <DependentUpon>201901112031290_EditedDatabaseName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnowGear.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -204,6 +244,7 @@
     <Content Include="Views\Home\SnowReports.cshtml" />
     <Content Include="Views\Home\ShoppingCart.cshtml" />
     <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\_ViewImports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -221,6 +262,35 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901091634393_SnowProducts.resx">
+      <DependentUpon>201901091634393_SnowProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091645289_TypeAdded.resx">
+      <DependentUpon>201901091645289_TypeAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091715476_AddedCart.resx">
+      <DependentUpon>201901091715476_AddedCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091718073_AddedContactFormAndCart.resx">
+      <DependentUpon>201901091718073_AddedContactFormAndCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091931094_AddedImageToProduct.resx">
+      <DependentUpon>201901091931094_AddedImageToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901102005258_addedRelationshipBetweenCartAndProducts.resx">
+      <DependentUpon>201901102005258_addedRelationshipBetweenCartAndProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901111847596_addToCartAction.resx">
+      <DependentUpon>201901111847596_addToCartAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901111917021_addToCartActions.resx">
+      <DependentUpon>201901111917021_addToCartActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901112031290_EditedDatabaseName.resx">
+      <DependentUpon>201901112031290_EditedDatabaseName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

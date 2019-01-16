@@ -1,19 +1,70 @@
-﻿
+﻿@model IQueryable<CartItem>
+
 @{
     ViewBag.Title = "ShoppingCart";
 }
 
 <div class="mainContainers">
-    <h2>ShoppingCart</h2>
-
+    <h2>Shopping Cart</h2>
+    <input class="siteBtns" type="button" name="KeepShopping" value="Keep Shopping" onclick="@("window.location.href='" + @Url.Action("Shop", "Home") + "'");" />
     <input class="siteBtns" type="button" name="Checkout" value="Checkout" />
-
-    <input class="siteBtns" type="button" name="KeepShopping" value="Keep Shopping" />
-
-    <input class="siteBtns" type="button" name="ModifyCart" value="Edit Cart" />
     <div class="cartItemsContainer">
-        <div class="cartItem"></div>
-        <div class="cartItem"></div>
-        <div class="cartItem"></div>
+        @foreach (var item in Model)
+        {
+            <div class="cartItem" id="@item.Id">
+                <div class="cartItemDetailsContainer">
+                    <div class="cartItemDetails">
+                        <div class="cartItemTitle">Item</div>
+                        <div><img src="@item.Product.Image" alt="Picture of Something Awesome" /></div>
+                        <div class="cartItemName">@item.Product.Name</div>
+                    </div>
+                    <div class="cartItemDetails">
+                        <div class="cartItemTitle">Color</div>
+                        <div>@item.Product.Color</div>
+                    </div>
+                    <div class="cartItemDetails">
+                        <div class="cartItemTitle">Size</div>
+                        <div>@item.Product.Size</div>
+                    </div>
+                    <div class="cartItemDetails">
+                        <div class="cartItemTitle">Quantity</div>
+                        <div>@item.Quantity</div>
+                        <input type="button" name="productName" value="Remove" />
+                    </div>
+                    <div class="cartItemDetails">
+                        <div class="cartItemTitle">Price</div>
+                        <div>@item.Product.Price</div>
+                    </div>
+
+                </div>
+            </div>
+        }
     </div>
 </div>
+
+@*     --Create--
+    var addToCart = new Cart { Name =  };
+    db.Carts.Add(addToCart);
+    db.SaveChanges();
+
+        --Read--
+    var query = from g in db.Carts
+              orderby g.Id
+              select g;
+
+    foreach (var item in query)
+    {
+        ***DO SOMETHING**
+    }
+
+        --Update--
+    var toChange = db.Carts.Find(1);
+    toChange.Quantity =  **CHANGE QUANTITY**
+    db.SaveChanges();
+
+        --Delete--
+    var toDelete = db.Carts.Find(2); **INPUT IS THE ID/PRIMARY KEY**
+    db.Carts.Remove(toDelete);
+    db.SaveChanges();
+*@
+

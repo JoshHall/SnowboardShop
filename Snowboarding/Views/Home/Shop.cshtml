@@ -1,12 +1,32 @@
-﻿
+﻿@model IQueryable<Product>
 @{
-    ViewBag.Title = "Shop";
+ViewBag.Title = "Shop";
 }
+
 <div class="mainContainers  shopItemsContainer">
     <h2>Shop</h2>
-    <div class="row">
-        <a class="noDeco" href="#">
-            <div class="shopItem" id="shopItem1">
+    @foreach (var item in Model)
+    {
+        <div class="noDeco" href="#">
+            <div class="shopItem" id="@item.Id">
+                <img src="@item.Image" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">@item.Name</h4>
+                    <ul>
+                        <li>$@item.Price</li>
+                        <li>@item.Size</li>
+                        <li>@item.Color</li>
+                        <li class="noDecoList">@item.Material</li>
+                    </ul>
+                </div>
+                <form method="post" action="@Url.Action("AddToCart","Home")"><input type="hidden" name="id" value="@item.Id" /><button>Add To Cart</button></form>
+            </div>
+        </div>
+    }
+    @* asp-controller="Home" asp-action="AddToCart" asp-route-id="@item.Id" asp-route-name="@item.Name" asp-route-image="@item.Image" asp-route-price="@item.Price" asp-route-size="@item.Size" asp-route-color="@item.Color" *@
+    @*<div class="row">
+
+            <div class="shopItem" id="shopItem2">
                 <img src="#" alt="Picture of Something Awesome" />
                 <div class="shopItemDetails">
                     <h4 class="shopItemTitle">Item Name</h4>
@@ -18,143 +38,130 @@
                 </div>
                 <input type="button" name="productName" value="View Product" />
             </div>
-        </a>
-        <div class="shopItem" id="shopItem2">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem3">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem3">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem4">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
         </div>
-        <div class="shopItem" id="shopItem4">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+        <div class="row">
+            <div class="shopItem" id="shopItem5">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="shopItem" id="shopItem5">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem6">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem6">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem7">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem7">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem8">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" /> 
         </div>
-        <div class="shopItem" id="shopItem8">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+        <div class="row">
+            <div class="shopItem" id="shopItem9">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="shopItem" id="shopItem9">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem10">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem10">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem11">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem11">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
+            <div class="shopItem" id="shopItem12">
+                <img src="#" alt="Picture of Something Awesome" />
+                <div class="shopItemDetails">
+                    <h4 class="shopItemTitle">Item Name</h4>
+                    <ul>
+                        <li>info</li>
+                        <li>info</li>
+                        <li>info</li>
+                    </ul>
+                </div>
+                <input type="button" name="productName" value="View Product" />
             </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-        <div class="shopItem" id="shopItem12">
-            <img src="#" alt="Picture of Something Awesome" />
-            <div class="shopItemDetails">
-                <h4 class="shopItemTitle">Item Name</h4>
-                <ul>
-                    <li>info</li>
-                    <li>info</li>
-                    <li>info</li>
-                </ul>
-            </div>
-            <input type="button" name="productName" value="View Product" />
-        </div>
-    </div>
+        </div>*@
 </div>
 
