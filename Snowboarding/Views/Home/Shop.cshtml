@@ -5,6 +5,9 @@ ViewBag.Title = "Shop";
 
 <div class="mainContainers  shopItemsContainer">
     <h2>Shop</h2>
+    <div class="alert alert-success" id="messages" style="display:none">
+
+    </div>
     @foreach (var item in Model)
     {
         <div class="noDeco" href="#">
@@ -19,7 +22,8 @@ ViewBag.Title = "Shop";
                         <li class="noDecoList">@item.Material</li>
                     </ul>
                 </div>
-                <form method="post" action="@Url.Action("AddToCart","Home")"><input type="hidden" name="id" value="@item.Id" /><button>Add To Cart</button></form>
+                <button onclick="addToCartClick(@item.Id)" id="addToCart_@item.Id" >Add To Cart</button>
+                
             </div>
         </div>
     }
@@ -165,3 +169,27 @@ ViewBag.Title = "Shop";
         </div>*@
 </div>
 
+@section scripts{
+<script type="text/javascript">
+    function addToCartClick(productId) {
+        var button = document.querySelector("#addToCart_" + productId);
+        button.setAttribute("disabled", "disabled");
+        fetch('/home/AddToCart',
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+
+                },
+                body: JSON.stringify({ id: productId })
+            }).then(function () {
+                button.removeAttribute("disabled");
+                var newMessage = document.createElement("p");
+                newMessage.innerText = "Added product";
+                document.querySelector("#messages").appendChild(newMessage);
+                document.querySelector("#messages").removeAttribute("style");
+            });
+    }
+
+    </script>    
+}

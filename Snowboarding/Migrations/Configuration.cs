@@ -18,6 +18,18 @@ namespace Snowboarding.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+
+            context.Products.Add(new Product
+            {
+                Name = "Snowboard",
+                Price = 1.99m,
+                Image = "./images/broken.jpg",
+                Color = "Red",
+                Size = "Large",
+                Material = "Plastic",
+                Type = "Snowboard"
+            });
+            context.SaveChanges();
         }
     }
 }
