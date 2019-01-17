@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.VisualBasic;
 
 namespace Snowboarding.Controllers
 {
@@ -34,6 +35,7 @@ namespace Snowboarding.Controllers
 
             return View();
         }
+        
 
         public ActionResult Contact()
         {
@@ -55,8 +57,9 @@ namespace Snowboarding.Controllers
             ViewBag.Message = "Your Shopping Cart";
 
             var query = from g in _db.CartItems
+                        orderby g.Id
                         select g;
-
+            
             return View(query);
         }
 
@@ -64,26 +67,68 @@ namespace Snowboarding.Controllers
 
         public ActionResult AddToCart(int id)
         {
-            var product = _db.Products.Find(id);
-            var addItem = new CartItem { ProductID = id , Product = product, Quantity = 1 };
-            _db.CartItems.Add(addItem);
+            bool flag = false;
+
+            foreach (var item in _db.CartItems)
+            {
+                if (item.ProductID == id)
+                {
+                    flag = true;
+                }
+            }
+
+            if (flag == true)
+            {
+                // loop through the cart to find correct id, add 1 to quantity
+                foreach (var item in _db.CartItems)
+                {
+                    if (item.ProductID == id)
+                    {
+                        item.Quantity += 1;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // create a new item and add to cart
+                var product = _db.Products.Find(id);
+                var addItem = new CartItem { ProductID = id, Product = product, Quantity = 1 };
+                _db.CartItems.Add(addItem);
+                //_db.SaveChanges();
+            }
+
             _db.SaveChanges();
-
-            //var query = from g in _db.CartItems
-            //            select g;
-
-            //return View("Shop",query);
+            
             this.Response.StatusCode = 200;
             return Content("Ok");
         }
 
+        [HttpPost]
+
         public ActionResult RemoveFromCart(int id)
         {
-            var toDelete = _db.CartItems.Find(2); 
-            _db.CartItems.Remove(toDelete);
+            // loop through the cart to find correct id -- remove 1 from quantity if possible -- else remove it
+            foreach (var item in _db.CartItems)
+            {
+                if (item.ProductID == id)
+                {
+                    item.Quantity -= 1;
+
+                    if (item.Quantity == 0)
+                    {
+                      
+                        _db.CartItems.Remove(item);
+                        break;
+
+                    }
+                }
+            }
+            
             _db.SaveChanges();
 
-            return View();
+            this.Response.StatusCode = 200;
+            return Content("Ok");
         }
 
     }
@@ -115,3 +160,4 @@ namespace Snowboarding.Controllers
     _db.CartItems.Remove(toDelete);
     _db.SaveChanges();
 */
+

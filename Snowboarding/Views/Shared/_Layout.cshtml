@@ -11,11 +11,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top ">
         <div class="container">
             <div class="nav navbar-header">
-                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>*@
+                </button>
                 @Html.ActionLink("The Josh Hall Snow Company", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
@@ -40,7 +40,7 @@
                 <p class="nav navbar-nav justify-content-end">&copy; @DateTime.Now.Year - The Josh Hall Snow Company</p>
                 <h5 class="nav navbar-nav justify-content-end">@Html.ActionLink("Back to Top", "", "Home")</h5>
                 <ul class="nav navbar-nav justify-content-end">
-                    
+
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Snow Report", "SnowReports", "Home")</li>

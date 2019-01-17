@@ -6,65 +6,138 @@
 
 <div class="mainContainers">
     <h2>Shopping Cart</h2>
-    <input class="siteBtns" type="button" name="KeepShopping" value="Keep Shopping" onclick="@("window.location.href='" + @Url.Action("Shop", "Home") + "'");" />
-    <input class="siteBtns" type="button" name="Checkout" value="Checkout" />
-    <div class="cartItemsContainer">
-        @foreach (var item in Model)
-        {
-            <div class="cartItem" id="@item.Id">
-                <div class="cartItemDetailsContainer">
-                    <div class="cartItemDetails">
-                        <div class="cartItemTitle">Item</div>
-                        <div><img src="@item.Product.Image" alt="Picture of Something Awesome" /></div>
-                        <div class="cartItemName">@item.Product.Name</div>
-                    </div>
-                    <div class="cartItemDetails">
-                        <div class="cartItemTitle">Color</div>
-                        <div>@item.Product.Color</div>
-                    </div>
-                    <div class="cartItemDetails">
-                        <div class="cartItemTitle">Size</div>
-                        <div>@item.Product.Size</div>
-                    </div>
-                    <div class="cartItemDetails">
-                        <div class="cartItemTitle">Quantity</div>
-                        <div>@item.Quantity</div>
-                        <input type="button" name="productName" value="Remove" />
-                    </div>
-                    <div class="cartItemDetails">
-                        <div class="cartItemTitle">Price</div>
-                        <div>@item.Product.Price</div>
-                    </div>
+    <div class="alert alert-success" id="messages" style="display:none"></div>
+        <input class="siteBtns" type="button" name="KeepShopping" value="Keep Shopping" onclick="@("window.location.href='" + @Url.Action("Shop", "Home") + "'");" />
+        <input class="siteBtns" type="button" name="Checkout" value="Checkout" @("window.location.href='" + @Url.Action("Checkout", "Home") + "'");"/>
+        <div class="cartItemsContainer">
+            @foreach (var item in Model)
+            {
+                <div class="cartItem row toRemove removeFromCart_@item.Id" id="beGone_@item.ProductID">
+                    <div class="col-xs-12 cartItemDetailsContainer">
+                        <div class="col-xs-2 cartItemDetails">
+                            <div class="cartItemTitle">Item</div>
+                            <div><img src="@item.Product.Image" alt="Picture of Something Awesome" /></div>
+                            <div class="cartItemName">@item.Product.Name</div>
+                        </div>
+                        <div class="col-xs-2 cartItemDetails">
+                            <div class="cartItemTitle">Color</div>
+                            <div >@item.Product.Color</div>
+                        </div>
+                        <div class="col-xs-2 cartItemDetails">
+                            <div class="cartItemTitle ">Size</div>
+                            <div >@item.Product.Size</div>
+                        </div>
+                        <div class="col-xs-3 cartItemDetails">
+                            <div class="cartItemTitle">Quantity</div>
+                            <button onclick="removeFromCartClick(@item.ProductID, @item.Quantity)" class="col-xs-3 removeFromCart_@item.ProductID">-</button>
+                            <div class="col-xs-3 editQuantity">@item.Quantity</div>
+                            <button onclick="addToCartClick(@item.ProductID, @item.Quantity)" class="col-xs-3 addToCart_@item.ProductID">+</button>
 
+                        </div>
+                        <div class="col-xs-2 cartItemDetails">
+                            <div class="cartItemTitle ">Price</div>
+                            <div >@item.Product.Price</div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
 
-@*     --Create--
-    var addToCart = new Cart { Name =  };
-    db.Carts.Add(addToCart);
-    db.SaveChanges();
+    @section scripts{
+<script type="text/javascript">
+            function removeFromCartClick(productId, quantity) {
+                ////document.querySelector("#messages").setAttribute("style", "display:none");
+                //var beGone = document.querySelector("#beGone_" + productId);
+                ////beGone.setAttribute("disabled", "disabled");
+                //var editQuantity = document.querySelector(".editQuantity");
+                //if (quantity == 1) {
+                //    while (beGone.firstChild) {
+                //        beGone.removeChild(button.firstChild);
+                //    }
+                //    beGone.remove();
+                //}
+                //else {
+                //    var quan = quantity;
+                //    quan -= 1;
+                //    editQuantity.replaceWith(quan);
+                //}
 
-        --Read--
-    var query = from g in db.Carts
-              orderby g.Id
-              select g;
+                fetch('/home/RemoveFromCart',
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
 
-    foreach (var item in query)
-    {
-        ***DO SOMETHING**
+                        },
+                        body: JSON.stringify({ id: productId })
+                    }).then(function () {
+                        //button.removeAttribute("disabled");
+                        //Response.redirect("/home/ShoppingCart");
+                        //var newMessage = document.createElement("p");
+                        //newMessage.innerText = "Removed product";
+                        //document.querySelector("#messages").appendChild(newMessage);
+                        //document.querySelector("#messages").removeAttribute("style");
+                        document.location.reload(true);
+                    });
+            }
+            function addToCartClick(productId, quantity) {
+                ////set the success button back to display: none
+                //document.querySelector("#messages").setAttribute("style", "display:none");
+                //var button = document.querySelector(".addToCart_" + productId);
+                //button.setAttribute("disabled", "disabled");
+                //var editQuantity = document.querySelector(".editQuantity");
+                //var quan = quantity;
+                //quan += 1;
+                ////editQuantity.innerHTML(quan);
+                //editQuantity.replaceWith(quan);
+
+                fetch('/home/AddToCart',
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+
+                        },
+                        body: JSON.stringify({ id: productId })
+                    }).then(function () {
+                        //button.removeAttribute("disabled");
+                        //var newMessage = document.createElement("p");
+                        //newMessage.innerText = "Added a product";
+                        //document.querySelector("#messages").appendChild(newMessage);
+                        //document.querySelector("#messages").removeAttribute("style");
+                        document.location.reload(true);
+                    });
+            }
+
+</script>
     }
 
-        --Update--
-    var toChange = db.Carts.Find(1);
-    toChange.Quantity =  **CHANGE QUANTITY**
-    db.SaveChanges();
 
-        --Delete--
-    var toDelete = db.Carts.Find(2); **INPUT IS THE ID/PRIMARY KEY**
-    db.Carts.Remove(toDelete);
-    db.SaveChanges();
-*@
+    @*     --Create--
+        var addToCart = new Cart { Name =  };
+        db.Carts.Add(addToCart);
+        db.SaveChanges();
+
+            --Read--
+        var query = from g in db.Carts
+                  orderby g.Id
+                  select g;
+
+        foreach (var item in query)
+        {
+            ***DO SOMETHING**
+        }
+
+            --Update--
+        var toChange = db.Carts.Find(1);
+        toChange.Quantity =  **CHANGE QUANTITY**
+        db.SaveChanges();
+
+            --Delete--
+        var toDelete = db.Carts.Find(2); **INPUT IS THE ID/PRIMARY KEY**
+        db.Carts.Remove(toDelete);
+        db.SaveChanges();
+    *@
 
